@@ -9,12 +9,22 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-        child: Center(
+    //Scaffold-Entire Structure of Homepage.
+    return Scaffold(
+        appBar: AppBar(
+          title: Text("Catalog App"),
+        ), //Header
+
+        //BODY      
+        body: Center(
           child: Container(
             child: Text("Welcome to $days days of flutter by $name"),
           ),
         ),
+ 
+
+        drawer: Drawer(), //Footer
+
       );
 
     
