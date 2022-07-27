@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app1/pages/login_page.dart';
 
 import 'pages/home_page.dart';
 
@@ -8,31 +9,29 @@ void main() {
 
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
-  
+
   @override
 
   //Widget-return widget(just like int and void)
   //BuildContext-Parameter of the method "build"
   //for method--> void bringVegetables({bool thaila=false},{int paisa=100})
-                              //{}- optional parameters 
+  //{}- optional parameters
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: HomePage(), //To import HomePage(Command+.)
-
       themeMode: ThemeMode.light,
 
       theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
-        brightness: Brightness.light
-      ),
+          primarySwatch: Colors.deepPurple, brightness: Brightness.light),
 
-      darkTheme: ThemeData(
-        brightness: Brightness.dark
-      ),
+      darkTheme: ThemeData(brightness: Brightness.dark),
 
-
-      
-      
+      //routes take {Map} as input
+      initialRoute: "/Home",
+      routes: {
+        "/": (context) => LoginPage(),
+        "/Home": (context) => HomePage(),
+        "/Login": (Context) => LoginPage(),
+      },
     );
   }
 }
