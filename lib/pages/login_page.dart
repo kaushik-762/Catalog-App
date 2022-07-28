@@ -3,9 +3,19 @@ import 'package:flutter_app1/pages/home_page.dart';
 import 'package:flutter_app1/utils/routes.dart';
 
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
 LoginPage({Key? key}) : super(key: key);
 
+
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+//"_" as a prefix in any method name or variable denotes that it is private to the class
+class _LoginPageState extends State<LoginPage> {
+  String name=" ";
+  bool changedButton=false;  //for animation
   @override
   Widget build(BuildContext context) {
     
@@ -27,7 +37,7 @@ LoginPage({Key? key}) : super(key: key);
               child: Text("-------"),
             ),
       
-            Text("Welcome",
+            Text("Welcome $name",
               style:TextStyle(
                 fontSize: 25,
                 fontWeight: FontWeight.bold,
@@ -51,6 +61,16 @@ LoginPage({Key? key}) : super(key: key);
                     hintText: "Enter Username",
                     labelText: "Username",
                   ),
+
+                   //To add the name next to "Welcome" Text
+                  onChanged: (value) {
+                    name=value;
+
+                    setState(() {
+                      //To call the build method again
+                    });
+                  } ,
+
                 ),
       
       
@@ -62,6 +82,8 @@ LoginPage({Key? key}) : super(key: key);
                     hintText: "Enter Password",
                     labelText: "Password",
                   ),
+                  
+                 
                 ),
       
                 SizedBox(
@@ -69,9 +91,63 @@ LoginPage({Key? key}) : super(key: key);
                 ),
       
       
+               //Container--->wrap with InkWell
+               //"InkWell"-- To make the container responsive and functional like an elevated button
+               InkWell(
+                
+
+                //"onTap"-->to make the container functional when tapped
+                onTap: ()async{
+                  setState(() {
+                    changedButton=true;
+                  });
+
+                  await Future.delayed(Duration(seconds: 1));
+                  Navigator.pushNamed(context, MyRoutes.homeRoute); 
+                },
+
+
+                  //Container--> AnimatedContainer  (To add animation)
+                 child: AnimatedContainer(
+                    duration: Duration(seconds: 1),
+                    height: 50,
+                    width: changedButton? 50: 150,
+                  /*   color: Colors.deepPurple, */
+                    alignment: Alignment.center,
+
+                    child: changedButton?Icon(Icons.done,color: Colors.white,)
+
+                    : Text("Login",
+                      style:TextStyle(
+                        color: Colors.white,
+                        fontWeight:FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+               
+                    decoration: BoxDecoration(
+                      color: Colors.deepPurple,
+               
+                      
+                      //shape: changedButton?BoxShape.circle: BoxShape.rectangle,
+
+                      //To make the container oval over the corners
+                      borderRadius: BorderRadius.circular(changedButton?50: 8),
+               
+                      
+                    ),
+               
+                 ),
+               )
+               
+               
+               
+               
+               
+               
+               
                 //"login" button
-      
-               ElevatedButton(
+               /* ElevatedButton(
                 child: Text("Login"),
                 onPressed: () {
                     Navigator.pushNamed(context, MyRoutes.homeRoute)
@@ -79,7 +155,7 @@ LoginPage({Key? key}) : super(key: key);
                 style: TextButton.styleFrom(
                   minimumSize: Size(150,40),
                 ),     
-               )
+               ) */
       
            ],
          ),
