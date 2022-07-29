@@ -21,19 +21,20 @@ class MyApp extends StatelessWidget {
   //{}- optional parameters
   Widget build(BuildContext context) {
     return MaterialApp(
-      //debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.light,
 
       theme: ThemeData(
           primarySwatch: Colors.deepPurple, brightness: Brightness.light,
             fontFamily: GoogleFonts.lato().fontFamily,
             primaryTextTheme: GoogleFonts.latoTextTheme(),
+            //primaryColor: Colors.black,
           ),
 
       darkTheme: ThemeData(brightness: Brightness.dark),
 
       //routes take {Map} as input
-      initialRoute: "/Login",
+      initialRoute: "/Home",
       routes: {
         "/": (context) => LoginPage(),
         MyRoutes.homeRoute: (context) => HomePage(),

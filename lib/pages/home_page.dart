@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app1/widgets/drawer.dart';
 
 
 class HomePage extends StatelessWidget {
@@ -27,7 +28,7 @@ class HomePage extends StatelessWidget {
         ),
  
 
-        drawer: Drawer(), //Footer
+        drawer: MyDrawer(), //Footer
 
       );
 
